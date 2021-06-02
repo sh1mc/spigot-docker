@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+    spigot:
+        build:
+            context: ./spigot
+            args:
+                - MINECRAFT_VERSION=1.16.5
+# By changing the setting below to TRUE you are indicating your agreement to Minecraft's EULA (https://account.mojang.com/documents/minecraft_eula).
+                - EULA_TXT=TRUE
+        networks:
+            - default
+        volumes:
+            - ./world:/spigot/world
+            - ./plugins:/spigot/plugins
+            - ./config/spigot.yml:/spigot/spigot.yml
+            - ./config/server.properties:/spigot/server.properties
+            - ./config/permissions.yml:/spigot/permissions.yml
+            - ./config/ops.json:/spigot/ops.json
+        expose:
+            - "8123"
+        ports:
+            - 25565:25565
+        restart: always
+        tty: true
+
+networks:
+    default:
+        external:
+            name: shared
