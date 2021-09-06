@@ -5,7 +5,7 @@ services:
         build:
             context: ./spigot
             args:
-                - MINECRAFT_VERSION=1.16.5
+                - MINECRAFT_VERSION=1.17.1
 # By changing the setting below to TRUE you are indicating your agreement to Minecraft's EULA (https://account.mojang.com/documents/minecraft_eula).
                 - EULA_TXT=TRUE
         networks:
