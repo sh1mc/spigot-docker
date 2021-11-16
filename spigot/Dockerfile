@@ -3,12 +3,11 @@ FROM alpine:latest
 LABEL maintainer="sh1mc"
 
 ARG MINECRAFT_VERSION
-ARG EULA_TXT
 
-RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
 RUN apk update && \
 	apk upgrade && \
-	apk add --no-cache openjdk16@testing git
+	apk add --no-cache openjdk16@community git
 
 RUN mkdir /spigot && \
 	cd /spigot && \
@@ -18,6 +17,6 @@ RUN mkdir /spigot && \
 WORKDIR /spigot
 
 RUN mv spigot-${MINECRAFT_VERSION}.jar spigot.jar && \
-	echo eula=${EULA_TXT} > eula.txt
+	echo "eula=TRUE" > eula.txt
 
-CMD java -Xms1G -Xmx2G -XX:+UseG1GC -jar spigot.jar nogui
+CMD java -Xms1G -Xmx1G -XX:+UseG1GC -jar spigot.jar nogui

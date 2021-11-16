@@ -6,12 +6,12 @@ services:
             context: ./spigot
             args:
                 - MINECRAFT_VERSION=1.17.1
-# By changing the setting below to TRUE you are indicating your agreement to Minecraft's EULA (https://account.mojang.com/documents/minecraft_eula).
-                - EULA_TXT=TRUE
         networks:
             - default
         volumes:
             - ./world:/spigot/world
+            - ./world_nether:/spigot/world_nether
+            - ./world_the_end:/spigot/world_the_end
             - ./plugins:/spigot/plugins
             - ./config/spigot.yml:/spigot/spigot.yml
             - ./config/server.properties:/spigot/server.properties
@@ -23,6 +23,9 @@ services:
             - 25565:25565
         restart: always
         tty: true
+        stdin_open: true
+        environment:
+          TZ: Asia/Tokyo
 
 networks:
     default:
