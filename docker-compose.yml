@@ -1,22 +1,20 @@
 version: "3"
 
 services:
-    spigot:
+    paper:
         build:
-            context: ./spigot
-            args:
-                - MINECRAFT_VERSION=1.17.1
+            context: ./papermc
         networks:
             - default
         volumes:
-            - ./world:/spigot/world
-            - ./world_nether:/spigot/world_nether
-            - ./world_the_end:/spigot/world_the_end
-            - ./plugins:/spigot/plugins
-            - ./config/spigot.yml:/spigot/spigot.yml
-            - ./config/server.properties:/spigot/server.properties
-            - ./config/permissions.yml:/spigot/permissions.yml
-            - ./config/ops.json:/spigot/ops.json
+            - ./world:/paper/world
+            - ./world_nether:/paper/world_nether
+            - ./world_the_end:/paper/world_the_end
+            - ./shinsekai:/paper/shinsekai
+            - ./plugins:/paper/plugins
+            - ./config/server.properties:/paper/server.properties
+            - ./config/permissions.yml:/paper/permissions.yml
+            - ./config/ops.json:/paper/ops.json
         expose:
             - "8123"
         ports:
